@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-pothos: #4CAF50;
+  --color-lavender: #E6E6FA;
+  --color-penn-blue: #011F5B;
+  --color-off-white: #FAF9F6;
+  
+  --color-bg-base: var(--bg-base);
+  --color-text-base: var(--text-base);
+  --color-text-muted: var(--text-muted);
+  --color-border-base: var(--border-base);
+  --color-glass-bg: var(--glass-bg);
+  --color-neo-brutal-shadow: var(--neo-brutal-shadow);
+}
+
+:root {
+  --bg-base: #FAF9F6; /* Elegant Off-white as default background */
+  --text-base: #111111; /* Carbon black for light backgrounds */
+  --text-muted: rgba(17, 17, 17, 0.65);
+  --border-base: rgba(1, 31, 91, 0.15);
+  --glass-bg: rgba(1, 31, 91, 0.05);
+  --neo-brutal-shadow: #011F5B;
+}
+
+.dark {
+  /* Make dark and root consistent to fully bypass/remove old dark mode, using our custom blue & off-white scheme instead */
+  --bg-base: #FAF9F6;
+  --text-base: #111111;
+  --text-muted: rgba(17, 17, 17, 0.65);
+  --border-base: rgba(1, 31, 91, 0.15);
+  --glass-bg: rgba(1, 31, 91, 0.05);
+  --neo-brutal-shadow: #011F5B;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-base text-text-base font-sans selection:bg-pothos/30 selection:text-pothos transition-colors duration-300;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-base;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-text-base/10 rounded-full hover:bg-pothos/50 transition-colors;
+  }
+}
+
+.glass {
+  @apply bg-glass-bg backdrop-blur-xl border border-border-base;
+}
+
+.neo-brutal {
+  @apply border-2 border-text-base shadow-[4px_4px_0px_0px_var(--neo-brutal-shadow)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none;
+}
+
+.neo-brutal-pothos {
+  @apply border-2 border-pothos shadow-[4px_4px_0px_0px_#4CAF50] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none;
+}
+
+.neo-brutal-lavender {
+  @apply border-2 border-lavender shadow-[4px_4px_0px_0px_#E6E6FA] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none;
+}
+
+@keyframes skillsCarousel {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-skills-carousel {
+  display: flex;
+  width: max-content;
+  animation: skillsCarousel 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-skills-carousel:hover {
+  animation-play-state: paused;
+}
